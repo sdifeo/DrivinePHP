@@ -1,0 +1,17 @@
+body{
+    
+}
+
+.navigationBar{
+    text-align: center;
+}
+
+.navigationBar ol{
+    
+    
+}
+
+.navigationBar li{
+    display: inline;
+    margin-left: 17px;
+}
