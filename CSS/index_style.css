@@ -1,0 +1,45 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.navigationBar{
+    text-align: center;
+    
+}
+
+imgBG{
+    background-image: url("../IMAGES/CARS/indexHeader.jpg")
+        
+        
+}
+
+.navigationBar ol{
+    display: inline-grid;
+    column-gap: 100px;
+    grid-template-columns: repeat(4, 50px [col-start]);  
+    
+    
+}
+
+#navBar-HLine{
+    margin:0;
+}
+
+.navigationBar li{
+    display: inline; 
+    
+}
+
+.navigationBar a {
+    text-decoration: none;
+    background-color: aqua;
+    padding: 15px;
+    color: black;
+    
+}
+
+#LC-500-indexHeader{
+    width: 100%;
+    height: 100%;
+}
