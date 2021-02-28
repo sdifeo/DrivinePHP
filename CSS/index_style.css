@@ -1,24 +1,26 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
 }
 
 .navigationBar{
     text-align: center;
+    background-color: black;
+    display: grid;
+    
     
 }
 
-imgBG{
-    background-image: url("../IMAGES/CARS/indexHeader.jpg")
-        
-        
+#pic{
+    left:0;
 }
 
 .navigationBar ol{
     display: inline-grid;
     column-gap: 100px;
-    grid-template-columns: repeat(4, 50px [col-start]);  
-    
+    grid-template-columns: repeat(4, 120px [col-start]);  
     
 }
 
@@ -33,13 +35,36 @@ imgBG{
 
 .navigationBar a {
     text-decoration: none;
-    background-color: aqua;
     padding: 15px;
-    color: black;
+    color: #dee2e6;
+    font-size: 1.1em;
+    text-transform: uppercase;
+  
+}
+
+.navigationBar a:hover {
+    text-shadow: 2px 3px 2px #ADB6CE;
+       
+}
+
+#navBar-HLine{
     
 }
 
 #LC-500-indexHeader{
     width: 100%;
     height: 100%;
+    
+}
+
+#headerIntro{
+    color: white;;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+#drivineName{
+    font-size: 1.2em;
+    text-transform: uppercase;
+    
 }
