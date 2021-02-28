@@ -12,11 +12,6 @@ CREATE ADVERTISMENT SECTION - BOTTOM OF PAGE?
 //PHP functions
     require_once "PHP/PHP-Functions.php";
     
-    define("FOLDER_PHP", "PHP/");
-    define("FILE_PHP_FUNCTIONS", FOLDER_PHP . "PHP-Functions.php");
-    
-//IMAGES
-    define("FOLDER_IMAGES", "IMAGES/");
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +21,8 @@ CREATE ADVERTISMENT SECTION - BOTTOM OF PAGE?
 createPageHeader("Home Page");
 ?>
 
-
-
 <div class="imgBG">
+    
 <?php
 createNavigationBar();
 ?>
@@ -40,7 +34,11 @@ createNavigationBar();
 
 <img id="LC-500-indexHeader" src="./IMAGES/CARS/indexHeader.jpg" alt="N/A"/>
 
-<div>
+
+<!-- Going to add the ADs now -->
+<p id="indexQuickSelection">Take a quick look at our special offers</p>
+
+<div class="indexItems">
     
 </div>
 

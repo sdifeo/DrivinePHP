@@ -10,7 +10,6 @@ body{
     background-color: black;
     display: grid;
     
-    
 }
 
 #pic{
@@ -19,10 +18,31 @@ body{
 
 .navigationBar ol{
     display: inline-grid;
-    column-gap: 100px;
-    grid-template-columns: repeat(4, 120px [col-start]);  
+    column-gap: 5em;
+    grid-template-columns: repeat(10, 100px [col-start]);
+    margin: 0;
     
 }
+
+#li-Logo-Drivine{
+    left: 0;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    
+}
+
+#NB-B1 {
+    grid-column-start: 4;
+    margin-top: 30px;
+    
+    
+}
+
+#NB-B2, #NB-B3, #NB-B4{
+    margin-top: 30px;
+}
+
+
 
 #navBar-HLine{
     margin:0;
@@ -30,6 +50,7 @@ body{
 
 .navigationBar li{
     display: inline; 
+    
     
 }
 
@@ -39,6 +60,7 @@ body{
     color: #dee2e6;
     font-size: 1.1em;
     text-transform: uppercase;
+    
   
 }
 
@@ -67,4 +89,10 @@ body{
     font-size: 1.2em;
     text-transform: uppercase;
     
+}
+
+#indexQuickSelection{
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
 }
