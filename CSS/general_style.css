@@ -1,0 +1,99 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navigationBar{
+    text-align: center;
+    background-color: black;
+    display: grid;
+    
+}
+
+#pic{
+    left:0;
+}
+
+.navigationBar ol{
+    display: inline-grid;
+    column-gap: 5em;
+    grid-template-columns: repeat(10, 100px [col-start]);
+    margin: 0;
+    
+}
+
+#li-Logo-Drivine{
+    left: 0;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    
+}
+
+#NB-B1 {
+    grid-column-start: 4;
+    margin-top: 30px;
+    
+    
+}
+
+#NB-B2, #NB-B3, #NB-B4{
+    margin-top: 30px;
+}
+
+
+
+#navBar-HLine{
+    margin:0;
+}
+
+.navigationBar li{
+    display: inline; 
+    
+    
+}
+
+.navigationBar a {
+    text-decoration: none;
+    padding: 15px;
+    color: #dee2e6;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    
+  
+}
+
+.navigationBar a:hover {
+    text-shadow: 2px 3px 2px #ADB6CE;
+       
+}
+
+#navBar-HLine{
+    
+}
+
+#LC-500-indexHeader{
+    width: 100%;
+    height: 100%;
+    
+}
+
+#headerIntro{
+    color: white;;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+#drivineName{
+    font-size: 1.2em;
+    text-transform: uppercase;
+    
+}
+
+#indexQuickSelection{
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+}
+

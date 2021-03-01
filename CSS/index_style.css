@@ -1,98 +1,45 @@
-body{
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    font-family: 'Roboto', sans-serif;
+.containerIndexItems{
+    margin: auto;
+    width: 60%;
 }
 
-.navigationBar{
+.whatWeOfferSection{
     text-align: center;
-    background-color: black;
-    display: grid;
-    
-}
-
-#pic{
-    left:0;
-}
-
-.navigationBar ol{
+    margin: 0;
     display: inline-grid;
-    column-gap: 5em;
-    grid-template-columns: repeat(10, 100px [col-start]);
-    margin: 0;
+    grid-column-gap: 30px;
+    border: 5px solid white;
+    grid-template-columns: repeat(3, 350px [col-start]);
+    grid-template-rows: repeat(2, 150px [col-start]);
     
 }
 
-#li-Logo-Drivine{
-    left: 0;
+.whatWeOfferSection img{
+    margin-top: 10px;
+}
+
+#selection-supercar-1{
     grid-column-start: 1;
+    grid-column-end: 1;
+    width: 350px;
+    height: auto;
+}
+
+#selection-supercar-2{
+    grid-column-start: 2;
     grid-column-end: 2;
+    width: 350px;
+    height: auto;
+}
+
+#selection-supercar-3{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    width: 350px;
+    height: auto;
+}
+
+#selection-desc{
+  color: white;
     
-}
-
-#NB-B1 {
-    grid-column-start: 4;
-    margin-top: 30px;
-    
-    
-}
-
-#NB-B2, #NB-B3, #NB-B4{
-    margin-top: 30px;
-}
-
-
-
-#navBar-HLine{
-    margin:0;
-}
-
-.navigationBar li{
-    display: inline; 
-    
-    
-}
-
-.navigationBar a {
-    text-decoration: none;
-    padding: 15px;
-    color: #dee2e6;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    
-  
-}
-
-.navigationBar a:hover {
-    text-shadow: 2px 3px 2px #ADB6CE;
-       
-}
-
-#navBar-HLine{
-    
-}
-
-#LC-500-indexHeader{
-    width: 100%;
-    height: 100%;
-    
-}
-
-#headerIntro{
-    color: white;;
-    text-align: center;
-    font-size: 1.3em;
-}
-
-#drivineName{
-    font-size: 1.2em;
-    text-transform: uppercase;
-    
-}
-
-#indexQuickSelection{
-    color: white;
-    text-align: center;
-    font-size: 1.2em;
 }

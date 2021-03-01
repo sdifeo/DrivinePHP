@@ -10,12 +10,10 @@ CREATE ADVERTISMENT SECTION - BOTTOM OF PAGE?
 
 <?php
 //PHP functions
-    require_once "PHP/PHP-Functions.php";
+    require_once "PHP/PHP-Functions-General.php";
+    require_once "PHP/PHP-Index-Functions.php";
     
 ?>
-
-<!DOCTYPE html>
-
 
 <?php
 createPageHeader("Home Page");
@@ -32,15 +30,14 @@ createNavigationBar();
     </p>
 </div>
 
-<img id="LC-500-indexHeader" src="./IMAGES/CARS/indexHeader.jpg" alt="N/A"/>
-
+<img id="LC-500-indexHeader" src="<?php echo FILE_HEADER_INDEX ?>" alt="N/A"/>
 
 <!-- Going to add the ADs now -->
-<p id="indexQuickSelection">Take a quick look at our special offers</p>
+<p id="indexQuickSelection">What we offer</p>
 
-<div class="indexItems">
-    
-</div>
+<?php
+showcaseSelections();
+?>
 
     </body>
 </html>
