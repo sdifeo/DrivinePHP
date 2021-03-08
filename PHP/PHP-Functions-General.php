@@ -7,7 +7,7 @@ define("FILE_CSS_STYLES_INDEX", FOLDER_CSS . "index_style.css");
 define("FOLDER_IMAGES", "IMAGES/");
 define("FILE_LOGO", FOLDER_IMAGES . "DRIVINE.png");
 
-function createPageHeader($title)
+function createPageHeader($title, $css, $css2)
 {
     ?>
     <html>
@@ -15,8 +15,8 @@ function createPageHeader($title)
             <meta charset="UTF-8">
             <title><?php echo $title ?></title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="<?php echo FILE_CSS_STYLES_GENERAL; ?>">
-            <link rel="stylesheet" href="<?php echo FILE_CSS_STYLES_INDEX; ?>">
+            <link rel="stylesheet" href="<?php echo FOLDER_CSS . $css; ?>">
+            <link rel="stylesheet" href="<?php echo FOLDER_CSS . $css2; ?>">
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
         </head>

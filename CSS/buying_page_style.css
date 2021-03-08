@@ -1,0 +1,21 @@
+.pageContainer{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.buyingForms {
+    margin-top: 50px;
+    display: inline-grid;
+    border: 4px solid red;
+    
+}
+
+.buyingForms input{
+    height: auto;
+    width: 250px;
+}
+
+#headerForm{
+    color: white;
+}

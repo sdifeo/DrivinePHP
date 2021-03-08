@@ -16,7 +16,7 @@ CREATE ADVERTISMENT SECTION - BOTTOM OF PAGE?
 ?>
 
 <?php
-createPageHeader("Home Page");
+createPageHeader("Home Page", "index_style.css", "general_style.css");
 ?>
 
 <div class="imgBG">
@@ -33,10 +33,17 @@ createNavigationBar();
 <img id="LC-500-indexHeader" src="<?php echo FILE_HEADER_INDEX ?>" alt="N/A"/>
 
 <!-- Going to add the ADs now -->
-<p id="indexQuickSelection">What we offer</p>
+<h2 id="indexQuickSelection">What we have</h2>
 
 <?php
-showcaseSelections();
+    showcaseSelections();
+?>
+<div class="currentSpecialOfferHeader">
+    <h2> Special advertisement</h2>
+</div>
+
+<?php
+    displayAd();
 ?>
 
     </body>

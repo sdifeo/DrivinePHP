@@ -1,6 +1,6 @@
 .containerIndexItems{
     margin: auto;
-    width: 60%;
+    width: 75%;
 }
 
 .whatWeOfferSection{
@@ -8,38 +8,62 @@
     margin: 0;
     display: inline-grid;
     grid-column-gap: 30px;
-    border: 5px solid white;
-    grid-template-columns: repeat(3, 350px [col-start]);
-    grid-template-rows: repeat(2, 150px [col-start]);
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+    grid-template-columns: repeat(3, 33% [col-start]);
+    grid-template-rows: repeat(2, auto [col-start]);
     
+}
+
+#indexQuickSelection{
+    margin-bottom: 60px;
 }
 
 .whatWeOfferSection img{
     margin-top: 10px;
+    
 }
 
 #selection-supercar-1{
     grid-column-start: 1;
     grid-column-end: 1;
-    width: 350px;
+    width: 75%;
     height: auto;
 }
 
 #selection-supercar-2{
     grid-column-start: 2;
     grid-column-end: 2;
-    width: 350px;
+    width: 75%;
     height: auto;
 }
 
 #selection-supercar-3{
     grid-column-start: 3;
     grid-column-end: 3;
-    width: 350px;
+    width: 75%;
     height: auto;
 }
 
-#selection-desc{
+.selection-desc{
   color: white;
     
+}
+
+#carTitle{
+    color: gold;
+    
+}
+
+.currentSpecialOfferHeader{
+    color: white;
+    text-align: center;
+}
+
+.highlightAd{
+    border: 4px solid red;
+}
+
+.nonHighlightAd{
+    background-color: red;
 }
