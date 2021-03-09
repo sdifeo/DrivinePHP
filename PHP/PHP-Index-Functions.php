@@ -8,11 +8,11 @@ define("FILE_SHOWCASE_SUPERCAR", FOLDER_IMAGES . "CARS/index-showcase-1.jpg");
 define("FILE_SHOWCASE_SUPERCAR2", FOLDER_IMAGES . "CARS/index-showcase-2.jpg");
 define("FILE_SHOWCASE_SUPERCAR3", FOLDER_IMAGES . "CARS/index-showcase-3.png");
 
-define("FILE_AD_1", FOLDER_IMAGES . "CARS/index-showcase-3.png");
-define("FILE_AD_2", FOLDER_IMAGES . "CARS/index-showcase-1.jpg");
-//define("FILE_AD_1", FOLDER_IMAGES . "CARS/index-showcase-3.png");
-//define("FILE_AD_1", FOLDER_IMAGES . "CARS/index-showcase-3.png");
-//define("FILE_AD_1", FOLDER_IMAGES . "CARS/index-showcase-3.png");
+define("FILE_AD_1", FOLDER_IMAGES . "CARS/AD-1.jpg");
+define("FILE_AD_2", FOLDER_IMAGES . "CARS/AD-2.jpg");
+define("FILE_AD_3", FOLDER_IMAGES . "CARS/AD-3.png");
+define("FILE_AD_4", FOLDER_IMAGES . "CARS/AD-4.jpg");
+define("FILE_AD_5", FOLDER_IMAGES . "CARS/AD-5.jpg");
 
 function showcaseSelections()
 {
@@ -35,12 +35,32 @@ function showcaseSelections()
 
 function displayAd()
 {
-    $ads = array(FILE_AD_1, FILE_AD_2);
+    $ads = array(FILE_AD_1, FILE_AD_2, FILE_AD_3, FILE_AD_4, FILE_AD_5);
     
-    shuffle($ads);
+    $random = array_rand($ads, 1);
     
-    echo "<img src='" . $ads[0] . "'>" ;
-          
+    if ($random == $ads[0])
+    {
+        echo "<div class='specialOfferContainer'>";
+            echo "<div class='specialOffer'>";
+                echo "<a href='https://www.google.ca'> <img src='" . $ads[$random] . "'></a>";
+            echo "</div>";
+        echo "</div>";
+    }
+    else
+    {
+        echo "<div class='specialOfferContainer'>";
+            echo "<div class='regularOffers'>";
+                echo "<a href='https://www.google.ca'> <img src='" . $ads[$random] . "'></a>";
+            echo "</div>";
+        echo "</div>";
+    }
+    
+    
+    
+//    echo "<img src='" . $ads[0] ."'>";
+    
+    
     ?>
         
     <?php

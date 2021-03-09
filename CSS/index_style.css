@@ -67,3 +67,29 @@
 .nonHighlightAd{
     background-color: red;
 }
+
+.specialOfferContainer{
+    width: 45%;
+    margin: auto;
+}
+
+.specialOffer{
+    text-align: center;
+    
+}
+
+.specialOffer img{
+    border: 5px solid red;
+    width: 100%;
+    height: auto;
+}
+
+.regularOffers{
+    text-align: center;
+    
+}
+
+.regularOffers img{
+    height: auto;
+    width: 50%;
+}
