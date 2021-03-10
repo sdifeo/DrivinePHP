@@ -12,4 +12,5 @@ createNavigationBar();
 
 <?php
 createBuyingForm();
+
 ?>
