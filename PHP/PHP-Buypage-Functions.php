@@ -1,16 +1,14 @@
 <?php
 define("FILE_CSS_BUYPAGE", FOLDER_CSS . "buying_page_style.css");
+define ("FILE_PURCHASES_TEXT", FOLDER_DATA . "purchases.txt");
+
 define ("PRODUCTCODE_MAX_LEN", 12);
 define ("NAME_MAX_LEN", 20);
 define ("CITY_MAX_LEN", 8);
 define ("COMMENTS_MAX_LEN", 200);
 define ("PRICE_MAX", 10000);
 define ("QUANTITY_MAX", 99);
-
-function test()
-{
-    echo "testing123";
-}
+define ("LOCAL_TAXES", 12.05);
 
 function createBuyingForm()
 {
@@ -102,7 +100,11 @@ $errorQuantity="";
         }
         
         $quantityInput = htmlspecialchars(trim($_POST["quantity"]));
-        if($quantityInput > QUANTITY_MAX)
+        if($quantityInput =="")
+        {
+            $errorQuantity = "Please enter an amount you want to buy.";
+        }
+        elseif($quantityInput > QUANTITY_MAX)
         {
             $errorQuantity = "You can only purchase a maximum of " . QUANTITY_MAX . " items.";
         }
@@ -114,6 +116,25 @@ $errorQuantity="";
         //checking if all is clear to proceed
         if($errorPCode=="" && $errorFName=="" && $errorLName=="" && $errorComments=="" && $errorPrice=="" && $errorQuantity=="")
         {
+            //make calculations before entering in array
+            $subTotal = (int)$quantityInput * (int)$priceInput;
+            
+            $grandTotal = ($subTotal * LOCAL_TAXES/100) + $subTotal;
+            $roundedGT = round($grandTotal, 2);
+            
+            $purchaseArray = array(
+                ProductID => $pCode,
+                FirstName => $fNameInput,
+                LastName => $lNameInput,
+                City => $cityInput,
+                Price => $priceInput,
+                Quantity => $quantityInput,
+                Comments => $commentInput,
+                SubTotal => $subTotal,
+                GrandTotal => $roundedGT
+   
+            );
+            
             $pCode = "";
             $fNameInput = "";
             $lNameInput = "";
@@ -121,8 +142,20 @@ $errorQuantity="";
             $commentInput = "";
             $priceInput = "";
             $quantityInput = "";
+            $subTotal = 0;
+            $grandTotal = 0;
+            $roundedGT = 0;
             
-            echo "<p id='notifyPurchase'>Thank you for your purchase!</p>";                        
+                      
+            echo "<p id='notifyPurchase'>Thank you for your purchase!</p>";        
+            
+            $toJson = json_encode($purchaseArray);
+            
+            $file = fopen(FILE_PURCHASES_TEXT, "a") or die("The file cannot be opened.");
+            
+            fwrite($file, print_r($toJson, true));
+            fclose($file);
+            
         }
     }   
 ?>
@@ -185,4 +218,3 @@ $errorQuantity="";
     <?php
 }
 ?>
-
