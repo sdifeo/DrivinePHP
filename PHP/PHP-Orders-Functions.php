@@ -53,11 +53,6 @@ function addTheData()
                                 }
                             }
                         }  
-                        else if(isset($_GET["command"]) && $_GET["command"]=="print")
-                        {
-                            
-                        }
-
                         
                 echo "<td class= $styles>" . $value . $dollaBills . "</td>";
                 }
