@@ -1,4 +1,12 @@
 <?php
+set_error_handler("errorManage");
+set_exception_handler("ExceptionManage"); 
+
+
+header("Expires: Thu, 01 Dec 2019 13:00:00 EST");
+header("Cache-Control: no-cache");
+header("Pragma: no-cache");
+
 define("FOLDER_CSS_INDEX", "CSS/");
 define("FILE_CSS_INDEX", FOLDER_CSS . "general_style.css");
 
@@ -14,6 +22,8 @@ define("FILE_AD_3", FOLDER_IMAGES . "CARS/AD-3.png");
 define("FILE_AD_4", FOLDER_IMAGES . "CARS/AD-4.jpg");
 define("FILE_AD_5", FOLDER_IMAGES . "CARS/AD-5.jpg");
 
+//making a little showcase, the cars are clickable. Wanted to add something extra, i thought just having a car was bland. 
+//the links don't go anywhere. 
 function showcaseSelections()
 {
     ?>
@@ -33,6 +43,9 @@ function showcaseSelections()
 <?php
 }
 
+//here is where I display the ad. the ADs have 5 images, one is going to have a red border as asked in the project
+//side note: the old school ads are pretty nice
+//
 function displayAd()
 {
     $ads = array(FILE_AD_1, FILE_AD_2, FILE_AD_3, FILE_AD_4, FILE_AD_5);
@@ -54,12 +67,7 @@ function displayAd()
                 echo "<a href='https://www.google.ca'> <img src='" . $ads[$random] . "'></a>";
             echo "</div>";
         echo "</div>";
-    }
-    
-    
-    
-//    echo "<img src='" . $ads[0] ."'>";
-    
+    }   
     
     ?>
         

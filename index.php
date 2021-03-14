@@ -8,15 +8,19 @@ SHOW CARS/BIKES WITH BRIEF DESCRIPTION
 CREATE ADVERTISMENT SECTION - BOTTOM OF PAGE?
 -->
 
+
 <?php
-//PHP functions
+//PHP functions, standard
     require_once "PHP/PHP-Functions-General.php";
     require_once "PHP/PHP-Index-Functions.php";
+    set_error_handler("errorManage");
+    set_exception_handler("ExceptionManage"); 
+
     
 ?>
 
 <?php
-createPageHeader("Home Page", "index_style.css", "general_style.css");
+createPageHeader("Home Page", "index_style.css", "general_style.css", "blackBG");
 ?>
 
 <div class="imgBG">
@@ -44,6 +48,7 @@ createNavigationBar();
 
 <?php
     displayAd();
+    generateFooter();
 ?>
 
     </body>

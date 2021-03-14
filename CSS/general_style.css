@@ -18,8 +18,7 @@ body{
 
 .navigationBar ol{
     display: inline-grid;
-    column-gap: 5em;
-    grid-template-columns: repeat(10, 100px [col-start]);
+    grid-template-columns: repeat(autofit, 100px [col-start]);
     margin: 0;
     
 }
@@ -32,10 +31,17 @@ body{
 }
 
 #NB-B1 {
-    grid-column-start: 4;
+    grid-column-start: 1;
     margin-top: 30px;
     
-    
+}
+
+#NB-B2{
+    grid-column-start: 2;
+}
+
+#NB-B3{
+    grid-column-start: 3;
 }
 
 #NB-B2, #NB-B3, #NB-B4{
@@ -95,5 +101,15 @@ body{
     color: white;
     text-align: center;
     font-size: 1.2em;
+}
+
+.footerBar{
+    height: 25px;
+    text-align: center;
+    font-weight: bolder;
+    background-color: whitesmoke;
+    width: 100%;
+    left: 0;
+    bottom: 0; 
 }
 

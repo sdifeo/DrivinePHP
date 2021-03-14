@@ -1,4 +1,9 @@
 <?php
+
+header("Expires: Thu, 01 Dec 2019 13:00:00 EST");
+header("Cache-Control: no-cache");
+header("Pragma: no-cache");
+
 define("FILE_CSS_BUYPAGE", FOLDER_CSS . "buying_page_style.css");
 define ("FILE_PURCHASES_TEXT", FOLDER_DATA . "purchases.txt");
 
@@ -11,6 +16,12 @@ define ("QUANTITY_MAX", 99);
 define ("LOCAL_TAXES", 12.05);
 header('content-type: text/html; charset=utf-8');
 
+
+//Had to do first create the HTML that would be accessed
+//then the validation - it wasn't that difficult, more tediuos than anything
+//finally write the file and do the encoding
+
+//for the array, I had found that making it associative made things easier personally, 
 function createBuyingForm()
 {
     ?>
@@ -125,8 +136,9 @@ $errorQuantity="";
             $taxesTotal = (round($subTotal * LOCAL_TAXES/100, 2));
             $roundedGT = round($grandTotal, 2);
             
+            //array to be stored in textfile (after encoding)
             $purchaseArray = (array(
-                'ProductCode' =>pCode, 
+                'ProductCode' =>$pCode, 
                 "FirstName" =>$fNameInput,
                 "LastName" =>$lNameInput,
                 "City" => $cityInput,
@@ -140,6 +152,7 @@ $errorQuantity="";
             
             var_dump($purchaseArray);
             
+            //reset everything so the user can make another purchase (more money!!)
             $pCode = "";
             $fNameInput = "";
             $lNameInput = "";
@@ -153,6 +166,7 @@ $errorQuantity="";
                 
             $encoded = json_encode($purchaseArray);
             
+            //tell the user thank you for spending money on our luxury cars
             echo "<br>";                        
             echo "<p id='notifyPurchase'>Thank you for your purchase!</p>";        
             
@@ -171,25 +185,25 @@ $errorQuantity="";
         
         <form action="BuyPage.php" method="POST" class="buyingForms">
             
-            <label>Product Code: </label>
+            <label>Product Code<span id="urgent">*</span>: </label>
             <input type="text" name="prodCode" value="<?php if(isset($pCode)){echo $pCode;}?>">
             <div class="errorMessage">
                 <?php echo $errorPCode ?>
             </div>
                 
-            <label>First Name: </label>
+            <label>First Name<span id="urgent">*</span>: </label>
             <input type="text" name="firstName" value="<?php if(isset($fNameInput)){echo $fNameInput;}?>">
             <div class="errorMessage">
                 <?php echo $errorFName ?>
             </div>
             
-            <label>Last Name: </label>
+            <label>Last Name<span id="urgent">*</span>: </label>
             <input type="text" name="lastName" value="<?php if(isset($lNameInput)){echo $lNameInput;}?>">
             <div class="errorMessage">
                 <?php echo $errorFName ?>
             </div>
             
-            <label>City: </label>
+            <label>City<span id="urgent">*</span>: </label>
             <input type="text" name="city" value="<?php if(isset($cityInput)){echo $cityInput;}?>">
             <div class="errorMessage">
                 <?php echo $errorCity ?>
@@ -201,13 +215,13 @@ $errorQuantity="";
                 <?php echo $errorComments ?>
             </div>
             
-            <label>Price: </label>
+            <label>Price<span id="urgent">*</span>: </label>
             <input type="text" name="price" value="<?php if(isset($priceInput)){echo $priceInput;}?>">
             <div class="errorMessage">
                 <?php echo $errorPrice ?>
             </div>
             
-            <label>Quantity: </label>
+            <label>Quantity<span id="urgent">*</span>: </label>
             <input type="text" name="quantity" value="<?php if(isset($quantityInput)){echo $quantityInput;}?>">
             <div class="errorMessage">
                 <?php echo $errorQuantity ?>
