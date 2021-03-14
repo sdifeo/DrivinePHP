@@ -1,8 +1,21 @@
-.container{
-
+body{
+    
 }
 
-.orderTable{
+.orderTable, tr, th, td{
     color: white;
-    text-align: center
+    width: 90%;
+    border: 1px white solid;
+}
+
+.lowSubTotal{
+    color: red;
+}
+
+.medSubTotal{
+    color: orange;
+}
+
+.highSubTotal{
+    color: lightgreen;
 }

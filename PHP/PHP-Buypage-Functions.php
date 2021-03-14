@@ -9,6 +9,7 @@ define ("COMMENTS_MAX_LEN", 200);
 define ("PRICE_MAX", 10000);
 define ("QUANTITY_MAX", 99);
 define ("LOCAL_TAXES", 12.05);
+header('content-type: text/html; charset=utf-8');
 
 function createBuyingForm()
 {
@@ -117,23 +118,27 @@ $errorQuantity="";
         if($errorPCode=="" && $errorFName=="" && $errorLName=="" && $errorComments=="" && $errorPrice=="" && $errorQuantity=="")
         {
             //make calculations before entering in array
+            
             $subTotal = (int)$quantityInput * (int)$priceInput;
             
             $grandTotal = ($subTotal * LOCAL_TAXES/100) + $subTotal;
+            $taxesTotal = (round($subTotal * LOCAL_TAXES/100, 2));
             $roundedGT = round($grandTotal, 2);
             
-            $purchaseArray = array(
-                ProductID => $pCode,
-                FirstName => $fNameInput,
-                LastName => $lNameInput,
-                City => $cityInput,
-                Price => $priceInput,
-                Quantity => $quantityInput,
-                Comments => $commentInput,
-                SubTotal => $subTotal,
-                GrandTotal => $roundedGT
-   
-            );
+            $purchaseArray = (array(
+                'ProductCode' =>pCode, 
+                "FirstName" =>$fNameInput,
+                "LastName" =>$lNameInput,
+                "City" => $cityInput,
+                "Price" => $priceInput,
+                "Quantity" => $quantityInput,
+                "Comment" => $commentInput,
+                "Subtotal" =>$subTotal,
+                "Taxes"=>$taxesTotal,
+                "GrandTotal"=>$roundedGT
+            ));
+            
+            var_dump($purchaseArray);
             
             $pCode = "";
             $fNameInput = "";
@@ -145,17 +150,16 @@ $errorQuantity="";
             $subTotal = 0;
             $grandTotal = 0;
             $roundedGT = 0;
+                
+            $encoded = json_encode($purchaseArray);
             
-                      
+            echo "<br>";                        
             echo "<p id='notifyPurchase'>Thank you for your purchase!</p>";        
             
-            $toJson = json_encode($purchaseArray);
-            
             $file = fopen(FILE_PURCHASES_TEXT, "a") or die("The file cannot be opened.");
-            
-            fwrite($file, print_r($toJson, true));
+            fwrite($file, $encoded . "\n");
             fclose($file);
-            
+           
         }
     }   
 ?>
