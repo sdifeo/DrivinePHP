@@ -20,7 +20,7 @@ function addTheData()
             $file2 = fgets($file);
             $file3 = json_decode($file2, true);
 
-            if (is_array($file3))
+            if (is_array($file3)) //was getting an error, googled it, https://stackoverflow.com/questions/2630013/invalid-argument-supplied-for-foreach, this helped a lot
         {
             foreach($file3 as $key=>$value)
             {

@@ -48,8 +48,6 @@ body{
     margin-top: 30px;
 }
 
-
-
 #navBar-HLine{
     margin:0;
 }
@@ -113,3 +111,32 @@ body{
     bottom: 0; 
 }
 
+/*===DESIGNING THE MODAL===*/
+/*==Learnt a lot from W3Schools*/
+
+.formContainer{
+    margin: auto;
+    width: 75%;
+}
+
+#loginModalForm{
+    display: none; 
+    position: absolute; 
+    z-index: 1; 
+    left: 35%;
+    right: 50%;
+    top: 35%;
+    width: 30%; 
+    height: 20%;
+    overflow: auto; 
+    background-color: rgba(255,255,255,0.4); 
+    border-radius: 15px;
+    
+}
+
+.insideModalForm{
+    margin-top: 45px;
+    text-align: center;
+    color: white;
+    
+}

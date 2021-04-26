@@ -1,0 +1,38 @@
+Steven Di Feo – 1934386
+Open/Close tags***
+<?php and ?>
+To declare a function:
+Function *name*()
+Call function: 
+Functionname();
+Declaring array:
+Array(
+Key=>Value
+Key=>Value);
+Variables:
+Define(at top of page… declares constatns)
+Ex:
+define ("ANIMAL_LEG_MAX", #);
+$ - then Var name, EX: $var1
+$_POST - important
+$_GET - important
+String functions:
+Explode(delimiter, str) – split string by string
+Implode(str, array) – join array with strings
+Str_replace(search, replace, str) – replace certain character by string
+Mb_strlen(str) – get string length
+Preg_match(pattern, str) – checks if matches REGEX pattern
+
+Files:
+Fopen(filename, action)
+Fwrite(to which file, write with which file)
+Fclose(handle)
+Die(kills php)
+Json_encode(encodes json to string)
+Json_decode(decodes json string)
+Filesize(check filesize)
+File_exists(checks if file exists)
+Dates
+Date(Y/y,m,d)
+
+
