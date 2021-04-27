@@ -15,7 +15,7 @@
         $bgColour = "whiteBG";
     }
     
-    createPageHeader("Orders Page", "general_style.css", "orders_page.css", $bgColour);
+    createPageHeader("Orders Page", "general_style.css", "orders_page.css", $bgColour, "ModalJS.js");
     createNavigationBar();
     createOrderTables();
     createDownload();

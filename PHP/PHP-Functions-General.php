@@ -15,6 +15,8 @@ header("Expires: Thu, 01 Dec 2019 13:00:00 EST");
 header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 
+require_once "connection.php";
+
 
 //the header to generate the HTML 
 //has two CSS pages because I like to have a general CSS that affects what I need (such as the nav bar)
@@ -34,8 +36,7 @@ function createPageHeader($title, $css, $css2, $bgColour, $JS)
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
         </head>
         <body class="<?php echo $bgColour ?>">
-            
-        
+                  
     <?php
 }
 
@@ -128,19 +129,17 @@ function createLoginModal()
     if(isset($_POST["login"]))
     {        
         #establish connection        
-        $connection = new PDO("mysql:host=localhost;dbname=database-1934386", "root", "lasalle123");
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        global $connection;
                 
         $SQLQuery = "CALL find_customer_password(:username);";
         $PDOStatement = $connection->prepare($SQLQuery);
         $PDOStatement->bindparam(":username", $_POST["username"]);
         $PDOStatement->execute();
-        
-        
+
         #loop through and find what we are looking for
         while ($row = $PDOStatement->fetch()) 
         {
-            echo "<br> Welcome ";
+            echo "<br> Welcome " . $row["firstname"];
         }
 
         #close the connection
@@ -148,15 +147,6 @@ function createLoginModal()
         $PDOStatement = null;
         
         $connection = null;
+        
     }
-    
-  
-    
-}
-
-function useLoginForm()
-{
-    
-    
-    
 }
