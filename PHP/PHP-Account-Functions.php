@@ -1,32 +1,30 @@
 <?php
 
-define("FILE_CSS_REGISTER", FOLDER_CSS . "register_page.css");
+define("FILE_CSS_ACCOUNT", FOLDER_CSS . "account_page.css");
 require_once "customer.php";
 
 
 function createRegistrationForm()
 {
     $cust = new customer;
-    
-    
     if(isset($_POST["register"]))
     {
 
-    $cust->regsiterNewUser("postalcode", "username", "firstname", "lastname", 
-            "address", "province", "city", "password");
+    $cust->loadUserInfo("86ece132-a53d-11eb-a5e7-98fa9bee1312");
     }
     
     
 ?>    
     <div class="pageContainer">
-    <h2 id="headerForm">Enter your info to register!</h2>
+    <h2 id="headerForm">Edit your account info here!</h2>
     
-    <div class="buyingFormDesign">
+    <div class="AccountFormDesign">
         
-        <form action="register.php" method="POST" class="buyingForms">
+        <form action="account.php" method="POST" class="infoForms">
             
             <label>First Name: </label>
-            <input type="text" name="firstname"><span id="urgent">*</span>
+            <input type="text" name="firstname">
+            <span id="urgent">*</span>
             <div class="errorMessage">
 
             </div>
@@ -73,7 +71,7 @@ function createRegistrationForm()
 
             </div>
             
-            <input type="submit" name="register" value="Register">
+            <input type="submit" name="update" value="Update">
         </form>
         
     </div>        

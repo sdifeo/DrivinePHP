@@ -5,6 +5,7 @@ header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 
 define("FILE_CSS_BUYPAGE", FOLDER_CSS . "buying_page_style.css");
+define ("FILE_PURCHASES_TEXT", FOLDER_DATA . "purchases.txt");
 
 define ("PRODUCTCODE_MAX_LEN", 12);
 define ("NAME_MAX_LEN", 20);
@@ -126,7 +127,52 @@ $errorQuantity="";
         
         //checking if all is clear to proceed
         if($errorPCode=="" && $errorFName=="" && $errorLName=="" && $errorComments=="" && $errorPrice=="" && $errorQuantity=="")
-        { 
+        {
+            //make calculations before entering in array
+            
+            $subTotal = (int)$quantityInput * (int)$priceInput;
+            
+            $grandTotal = ($subTotal * LOCAL_TAXES/100) + $subTotal;
+            $taxesTotal = (round($subTotal * LOCAL_TAXES/100, 2));
+            $roundedGT = round($grandTotal, 2);
+            
+            //array to be stored in textfile (after encoding)
+            $purchaseArray = (array(
+                'ProductCode' =>$pCode, 
+                "FirstName" =>$fNameInput,
+                "LastName" =>$lNameInput,
+                "City" => $cityInput,
+                "Price" => $priceInput,
+                "Quantity" => $quantityInput,
+                "Comment" => $commentInput,
+                "Subtotal" =>$subTotal,
+                "Taxes"=>$taxesTotal,
+                "GrandTotal"=>$roundedGT
+            ));
+            
+            var_dump($purchaseArray);
+            
+            //reset everything so the user can make another purchase (more money!!)
+            $pCode = "";
+            $fNameInput = "";
+            $lNameInput = "";
+            $cityInput = "";
+            $commentInput = "";
+            $priceInput = "";
+            $quantityInput = "";
+            $subTotal = 0;
+            $grandTotal = 0;
+            $roundedGT = 0;
+                
+            $encoded = json_encode($purchaseArray);
+            
+            //tell the user thank you for spending money on our luxury cars
+            echo "<br>";                        
+            echo "<p id='notifyPurchase'>Thank you for your purchase!</p>";        
+            
+            $file = fopen(FILE_PURCHASES_TEXT, "a") or die("The file cannot be opened.");
+            fwrite($file, $encoded . "\n");
+            fclose($file);
            
         }
     }   
@@ -140,22 +186,41 @@ $errorQuantity="";
         <form action="BuyPage.php" method="POST" class="buyingForms">
             
             <label>Product Code<span id="urgent">*</span>: </label>
-            <select name="products">
-                <option value="test">option</option>
-                <option value="test1">option1</option>
-                <option value="test2">option2</option>
-                <option value="test3">option3</option>
-            </select>
+            <input type="text" name="prodCode" value="<?php if(isset($pCode)){echo $pCode;}?>">
             <div class="errorMessage">
                 <?php echo $errorPCode ?>
             </div>
-                                                    
+                
+            <label>First Name<span id="urgent">*</span>: </label>
+            <input type="text" name="firstName" value="<?php if(isset($fNameInput)){echo $fNameInput;}?>">
+            <div class="errorMessage">
+                <?php echo $errorFName ?>
+            </div>
+            
+            <label>Last Name<span id="urgent">*</span>: </label>
+            <input type="text" name="lastName" value="<?php if(isset($lNameInput)){echo $lNameInput;}?>">
+            <div class="errorMessage">
+                <?php echo $errorFName ?>
+            </div>
+            
+            <label>City<span id="urgent">*</span>: </label>
+            <input type="text" name="city" value="<?php if(isset($cityInput)){echo $cityInput;}?>">
+            <div class="errorMessage">
+                <?php echo $errorCity ?>
+            </div>
+            
             <label>Comments: </label>
             <input type="text" name="comments" value="<?php if(isset($commentInput)){echo $commentInput;}?>">
             <div class="errorMessage">
                 <?php echo $errorComments ?>
             </div>
-                        
+            
+            <label>Price<span id="urgent">*</span>: </label>
+            <input type="text" name="price" value="<?php if(isset($priceInput)){echo $priceInput;}?>">
+            <div class="errorMessage">
+                <?php echo $errorPrice ?>
+            </div>
+            
             <label>Quantity<span id="urgent">*</span>: </label>
             <input type="text" name="quantity" value="<?php if(isset($quantityInput)){echo $quantityInput;}?>">
             <div class="errorMessage">

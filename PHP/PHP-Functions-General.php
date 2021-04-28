@@ -16,6 +16,7 @@ header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 
 require_once "connection.php";
+require_once "customer.php";
 
 
 //the header to generate the HTML 
@@ -103,6 +104,30 @@ function ExceptionManage($error)
 
 function createLoginModal()
 {
+    if(isset($_POST["login"]))
+    { 
+        $cust = new customer();
+        
+        if ($cust->userLogin($_POST["username"], $_POST["password"]));
+        {
+           $cust->grabAllUserInfo($_POST["username"]);
+            echo $cust->getAddress(); 
+        }
+        else
+        {
+            echo "error";
+        }
+        
+        #if statement to check if login is valid
+        
+
+        
+        #create the session
+
+        
+        
+    }
+    
       ?>
             
             <button id="test1" class="loginButtonModal" onclick="changeDisplayFunction()">Login</button>
@@ -121,32 +146,11 @@ function createLoginModal()
                         <br>
                         <input id="formButton" name="login" type="submit" value="Login"> 
                         <input id="formButtonClose" type="submit" value="Cancel" onclick="closeLoginForm()">
+                        
+                        <a id="createAnAccount" href="register.php">Need an account?</a>
                     </div>
                 </form>
             </div>
     <?php
-    
-    if(isset($_POST["login"]))
-    {        
-        #establish connection        
-        global $connection;
-                
-        $SQLQuery = "CALL find_customer_password(:username);";
-        $PDOStatement = $connection->prepare($SQLQuery);
-        $PDOStatement->bindparam(":username", $_POST["username"]);
-        $PDOStatement->execute();
-
-        #loop through and find what we are looking for
-        while ($row = $PDOStatement->fetch()) 
-        {
-            echo "<br> Welcome " . $row["firstname"];
-        }
-
-        #close the connection
-        $PDOStatement->closeCursor();
-        $PDOStatement = null;
-        
-        $connection = null;
-        
-    }
+   # echo var_dump($cust);
 }

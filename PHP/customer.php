@@ -22,6 +22,9 @@ define("PASSWORD_MAX_LEN", 255);
 
 require_once "connection.php";
 
+session_start();
+$_SESSION["firstname"] = "";
+
 class customer
 {
     private $customer_uuid = "";
@@ -34,6 +37,22 @@ class customer
     private $postalCode = "";
     private $password = "";
     private $dateCreated;
+    
+    #creating constructor - called every time we instantiate an object
+    function __construct($newUsername="", $newFirstname="", $newLastname="", $newAddress="", $newCity="", $newProvince="", $newPostalcode="", $newPassword="") 
+    {
+        $this->setUsername($newUsername);
+        $this->setFirstname($newFirstname);
+        $this->setLastname($newLastname);
+        $this->setAddress($newAddress);
+        $this->setCity($newCity);
+        $this->setProvince($newProvince);
+        $this->setPostalCode($newPostalcode);
+        $this->setPassword($newPassword);
+    }
+    
+    
+    #creating getters and setters
      
     public function getCustomer_uuid()
     {
@@ -238,6 +257,78 @@ class customer
     }
     
     #CREATING METHODS
+    #like a load function
+    function userLogin($username, $password)
+    {
+        
+            #establish connection        
+            global $connection;
+
+            $SQLQuery = "CALL find_customer_password(:username);";
+            $PDOStatement = $connection->prepare($SQLQuery);
+            $PDOStatement->bindparam(":username", $username);
+            $PDOStatement->execute();
+                        
+            while($row = $PDOStatement->fetch())
+            {
+                $this->username = $username;
+                $this->password = $row["u_password"];
+                $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+                
+            }
+            if(password_verify($password, $this->password))
+            {
+                
+                return true;
+            }
+                        
+            #close the connection
+            $PDOStatement->closeCursor();
+            $PDOStatement = null;
+            $connection = null;
+            
+        }
+        
+    function grabAllUserInfo($username)
+    {
+        global $connection;
+        
+        $SQLQuery = "CALL customers_selectOne(:username);";
+        $PDOStatement = $connection->prepare($SQLQuery);
+        $PDOStatement->bindparam(":username", $username);
+        $PDOStatement->execute();
+        
+        while($row = $PDOStatement->fetch())
+            {
+                $this->username = $row["username"];
+                $this->firstname = $row["firstname"];
+                $this->lastname = $row["lastname"];
+                $this->address = $row["address"];
+                $this->city = $row["city"];
+                $this->postalCode = $row["postal_code"];
+                $this->province = $row["province"];
+                $this->password = $row["u_password"];
+                
+                return true;
+            }
+                                    
+            $PDOStatement->closeCursor();
+            $PDOStatement = null;
+            $connection = null;
+    }
+        
+    function createSession()
+    {
+       $_SESSION["firstname"]= $this->username;
+        
+           
+       //reload the page
+       header("Location: index.php");
+       echo $_SESSION;
+       exit();
+    }
+    
+    
     function regsiterNewUser($username, $firstname, $lastname, $address, $city, $province, $postalCode, $password)
     {
         global $connection;
@@ -254,11 +345,29 @@ class customer
         $PDOStatement->bindParam(":pwd", $_POST[$password]);
         
         $PDOStatement->execute();
-                
+        $PDOStatement = null;
+        $connection->close();
+                        
     }
     
     function updateUserInfo($username, $firstname, $lastname, $address, $city, $province, $postalCode, $password)
     {
+        global $connection;
+        
+        $SQLQuery = "CALL customers_update(:fname, :lname, :address, :city, :postalcode, :province, :uname, :pwd);";
+        $PDOStatement = $connection->prepare($SQLQuery);
+        $PDOStatement->bindParam(":fname", $_POST[$firstname]);
+        $PDOStatement->bindParam(":lname", $_POST[$lastname]);
+        $PDOStatement->bindParam(":address", $_POST[$address]);
+        $PDOStatement->bindParam(":city", $_POST[$city]);
+        $PDOStatement->bindParam(":postalcode", $_POST[$postalCode]);
+        $PDOStatement->bindParam(":province", $_POST[$province]);
+        $PDOStatement->bindParam(":uname", $_POST[$username]);
+        $PDOStatement->bindParam(":pwd", $_POST[$password]);
+        
+        $PDOStatement->execute();
+        $PDOStatement = null;
+        $connection->close();
         
     }
 }
