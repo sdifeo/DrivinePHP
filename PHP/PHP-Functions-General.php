@@ -1,8 +1,12 @@
 <?php
 
+require_once "connection.php";
+include ("customer.php");
+
 define("FOLDER_CSS", "CSS/");
 define("FOLDER_DATA", "DATA/");
 define("FOLDER_JAVASCRIPT", "JAVASCRIPT/");
+
 
 define("FILE_JAVASCRIPT", FOLDER_JAVASCRIPT . "ModalJS.js");
 define("FILE_CSS_STYLES_GENERAL", FOLDER_CSS . "general_style.css");
@@ -14,9 +18,6 @@ define("FILE_LOGO", FOLDER_IMAGES . "DRIVINE.png");
 header("Expires: Thu, 01 Dec 2019 13:00:00 EST");
 header("Cache-Control: no-cache");
 header("Pragma: no-cache");
-
-require_once "connection.php";
-require_once "customer.php";
 
 
 //the header to generate the HTML 
@@ -102,38 +103,62 @@ function ExceptionManage($error)
     echo "An error occured in the file '" . $error->getFile() . "', on line "  . " Error " . $error->getMessage();
 }
 
-function createLoginModal()
+function destroySession()
 {
+
+    session_unset();
+    //destroy/stop the session
+    session_destroy();
+
+    //reload the page...
+    header("Location: index.php");
+    exit();
+    
+}
+    
     if(isset($_POST["login"]))
-    { 
+    {
+        //instantiate new object
         $cust = new customer();
-        
-        if ($cust->userLogin($_POST["username"], $_POST["password"]));
+        //checking if login is okay
+        if($cust->userLogin($_POST["username"], $_POST["password"]))
         {
-           $cust->grabAllUserInfo($_POST["username"]);
-            echo $cust->getAddress(); 
+            //going to grab the info we need from this username in the DB
+            $cust->grabAllUserInfo($_POST["username"]);
+
+            //set it all to session variables
+            $_SESSION["firsname"] = $cust->getFirstname();
+            $_SESSION["lasname"] = $cust->getLastname();
+            $_SESSION["customer_uuid"] = $cust->getCustomer_uuid();
+            
+            header("Location: index.php");
+            exit();
+        
         }
-        else
+    }
+    
+    if(isset($_POST["logout"]))
+    {
+        //if already logged in, give the user the option to log out
+        if(isset($_POST["logout"]))
         {
-            echo "error";
+            destroySession();
         }
-        
-        #if statement to check if login is valid
-        
-
-        
-        #create the session
-
-        
         
     }
     
+
+function createLoginModal()
+{         
+    
+    if(!isset($_SESSION["customer_uuid"]))
+    {
       ?>
             
             <button id="test1" class="loginButtonModal" onclick="changeDisplayFunction()">Login</button>
         
             <div class="formContainer">    
-                <form id="loginModalForm" class="loginModalForm" action=index.php method="POST">
+                <form id="loginModalForm" class="loginModalForm" method="POST">
                     <div class="insideModalForm">
                          
                         <label id="formLabel"> Username: </label>
@@ -152,5 +177,22 @@ function createLoginModal()
                 </form>
             </div>
     <?php
-   # echo var_dump($cust);
+    }
+    else
+    {
+        ?>
+            <div class="displayName">
+                <br>
+                <?php
+                    global $name;
+                    echo $name;
+                    echo "Welcome " . $_SESSION["firsname"] . " " . $_SESSION["lasname"];
+                ?>
+                
+            </div>
+            <form action="index.php" method="POST">
+                <input type="submit" value="Logout" name="logout">
+            </form>
+        <?php
+    }
 }

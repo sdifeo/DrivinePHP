@@ -258,38 +258,36 @@ class customer
     
     #CREATING METHODS
     #like a load function
-    function userLogin($username, $password)
+    public function userLogin($username, $password)
     {
+        global $connection;
+        $cust = new customer();
         
-            #establish connection        
-            global $connection;
-
-            $SQLQuery = "CALL find_customer_password(:username);";
-            $PDOStatement = $connection->prepare($SQLQuery);
-            $PDOStatement->bindparam(":username", $username);
-            $PDOStatement->execute();
-                        
-            while($row = $PDOStatement->fetch())
-            {
-                $this->username = $username;
-                $this->password = $row["u_password"];
-                $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-                
-            }
-            if(password_verify($password, $this->password))
-            {
-                
-                return true;
-            }
-                        
-            #close the connection
-            $PDOStatement->closeCursor();
-            $PDOStatement = null;
-            $connection = null;
+        $SQLQuery = "CALL find_customer_password(:username);";
+        $PDOStatement = $connection->prepare($SQLQuery);
+        $PDOStatement->bindparam(":username", $username);
+        $PDOStatement->execute();
+        
+        if($row = $PDOStatement->fetch())
+        {
+            $this->username = $username;
+            $this->password = $row["u_password"];
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
             
+            if(password_verify($password, $this->password))
+                {
+                    return true;
+                }
         }
         
-    function grabAllUserInfo($username)
+        #close the connection
+        $PDOStatement->closeCursor();
+        $PDOStatement = null;
+        $connection = null;
+
+    }
+    
+    public function grabAllUserInfo($username)
     {
         global $connection;
         
@@ -298,9 +296,11 @@ class customer
         $PDOStatement->bindparam(":username", $username);
         $PDOStatement->execute();
         
-        while($row = $PDOStatement->fetch())
+        if($row = $PDOStatement->fetch())
             {
                 $this->username = $row["username"];
+                $this->customer_uuid = $row["customer_uuid"];
+                
                 $this->firstname = $row["firstname"];
                 $this->lastname = $row["lastname"];
                 $this->address = $row["address"];
@@ -309,26 +309,13 @@ class customer
                 $this->province = $row["province"];
                 $this->password = $row["u_password"];
                 
-                return true;
             }
                                     
             $PDOStatement->closeCursor();
             $PDOStatement = null;
             $connection = null;
     }
-        
-    function createSession()
-    {
-       $_SESSION["firstname"]= $this->username;
-        
-           
-       //reload the page
-       header("Location: index.php");
-       echo $_SESSION;
-       exit();
-    }
-    
-    
+            
     function regsiterNewUser($username, $firstname, $lastname, $address, $city, $province, $postalCode, $password)
     {
         global $connection;

@@ -1,8 +1,25 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+require_once 'connection.php';
+require_once 'collection.php';
+
+class customers extends collection
+{
+    
+    function __construct() 
+    {
+        global $connection;
+        
+        $SQLQuery = "CALL customers_selectAll;";
+        $PDOStatement->execute();
+        
+        while($row = $PDOStatement->fetch())
+        {
+            
+        }
+        
+        
+    }
+    
+}
 

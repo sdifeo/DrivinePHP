@@ -7,10 +7,8 @@ set_exception_handler("ExceptionManage");
 
 ?>
 
-
-
 <?php
-createPageHeader("Buy Page", "general_style.css", "buying_page_style.css", "blackBG","ModalJS.js");
+createPageHeader("BuyPage", "general_style.css", "buying_page_style.css", "blackBG","ModalJS.js");
 createNavigationBar();
 ?>
 

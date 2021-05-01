@@ -7,7 +7,9 @@ header("Expires: Thu, 01 Dec 2019 13:00:00 EST");
 header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 
+require_once 'PHP-Functions-General.php';
 
+echo $_SESSION["customer_uuid"];
 function addTheData()
 {   
     

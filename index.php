@@ -21,7 +21,7 @@ CREATE ADVERTISMENT SECTION - BOTTOM OF PAGE?
 ?>
 
 <?php
-createPageHeader("Home Page", "index_style.css", "general_style.css", "blackBG", "ModalJS.js");
+createPageHeader("HomePage", "index_style.css", "general_style.css", "blackBG", "ModalJS.js");
 ?>
 
 <div class="imgBG">

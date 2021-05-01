@@ -15,6 +15,9 @@ define ("QUANTITY_MAX", 99);
 define ("LOCAL_TAXES", 12.05);
 header('content-type: text/html; charset=utf-8');
 
+require_once "product.php";
+require_once "products.php";
+
 
 //Had to do first create the HTML that would be accessed
 //then the validation - it wasn't that difficult, more tediuos than anything
@@ -131,6 +134,30 @@ $errorQuantity="";
         }
     }   
 ?>
+
+<?php
+
+
+
+function loadOptions()
+{
+    $products = new products();
+    $prod = new product();
+    
+    foreach($products->information as $prod)
+    {
+        echo $prod->getProductUUID();
+        
+    }
+    
+}
+
+if(isset($_POST["test"]))
+{
+    loadOptions();
+}
+
+?>
     
 <div class="pageContainer">
     <h2 id="headerForm">Place an order below</h2>
@@ -162,7 +189,7 @@ $errorQuantity="";
                 <?php echo $errorQuantity ?>
             </div>
             
-            <input type="submit" name="saveBtn">
+            <input type="submit" name="test">
         </form>
         
     </div>        

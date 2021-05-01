@@ -144,3 +144,8 @@ body{
 #createAnAccount{
     color: bisque;
 }
+
+.displayName{
+    color: white;
+    font-size: large;
+}

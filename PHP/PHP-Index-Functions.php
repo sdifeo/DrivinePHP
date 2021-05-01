@@ -1,7 +1,7 @@
 <?php
+
 set_error_handler("errorManage");
 set_exception_handler("ExceptionManage"); 
-
 
 header("Expires: Thu, 01 Dec 2019 13:00:00 EST");
 header("Cache-Control: no-cache");
@@ -21,6 +21,8 @@ define("FILE_AD_2", FOLDER_IMAGES . "CARS/AD-2.jpg");
 define("FILE_AD_3", FOLDER_IMAGES . "CARS/AD-3.png");
 define("FILE_AD_4", FOLDER_IMAGES . "CARS/AD-4.jpg");
 define("FILE_AD_5", FOLDER_IMAGES . "CARS/AD-5.jpg");
+
+
 
 //making a little showcase, the cars are clickable. Wanted to add something extra, i thought just having a car was bland. 
 //the links don't go anywhere. 
