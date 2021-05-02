@@ -300,7 +300,6 @@ class customer
             {
                 $this->username = $row["username"];
                 $this->customer_uuid = $row["customer_uuid"];
-                
                 $this->firstname = $row["firstname"];
                 $this->lastname = $row["lastname"];
                 $this->address = $row["address"];
@@ -337,25 +336,26 @@ class customer
                         
     }
     
-    function updateUserInfo($username, $firstname, $lastname, $address, $city, $province, $postalCode, $password)
+    function updateUserInfo()
     {
         global $connection;
         
-        $SQLQuery = "CALL customers_update(:fname, :lname, :address, :city, :postalcode, :province, :uname, :pwd);";
+        $SQLQuery = "CALL customers_update(:uname, :fname, :lname, :address, :city, :province, :postal_code, :pwd, :customer_uuid);";
         $PDOStatement = $connection->prepare($SQLQuery);
-        $PDOStatement->bindParam(":fname", $_POST[$firstname]);
-        $PDOStatement->bindParam(":lname", $_POST[$lastname]);
-        $PDOStatement->bindParam(":address", $_POST[$address]);
-        $PDOStatement->bindParam(":city", $_POST[$city]);
-        $PDOStatement->bindParam(":postalcode", $_POST[$postalCode]);
-        $PDOStatement->bindParam(":province", $_POST[$province]);
-        $PDOStatement->bindParam(":uname", $_POST[$username]);
-        $PDOStatement->bindParam(":pwd", $_POST[$password]);
+        $PDOStatement->bindParam(":fname", $_POST["firstname"]);
+        $PDOStatement->bindParam(":lname", $_POST["lastname"]);
+        $PDOStatement->bindParam(":address", $_POST["address"]);
+        $PDOStatement->bindParam(":city", $_POST["city"]);
+        $PDOStatement->bindParam(":postal_code", $_POST["postal_code"]);
+        $PDOStatement->bindParam(":province", $_POST["province"]);
+        $PDOStatement->bindParam(":uname", $_POST["username"]);
+        $PDOStatement->bindParam(":pwd", $_POST["password"]);
+        $PDOStatement->bindparam(":customer_uuid", $_SESSION["customer_uuid"]);
+        
         
         $PDOStatement->execute();
         $PDOStatement = null;
-        $connection->close();
-        
+                
     }
 }
 

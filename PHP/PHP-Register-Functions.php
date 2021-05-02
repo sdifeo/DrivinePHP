@@ -12,7 +12,7 @@ function createRegistrationForm()
     if(isset($_POST["register"]))
     {
 
-    $cust->regsiterNewUser("postalcode", "username", "firstname", "lastname", 
+        $cust->regsiterNewUser("postalcode", "username", "firstname", "lastname", 
             "address", "province", "city", "password");
     }
     

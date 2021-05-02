@@ -22,14 +22,14 @@ class collection {
     #get specific item/object from array using primary key, like a search
     public function get ($primarykey)
     {
-        if(isset($this->info[$primarykey]))
+        if(isset($this->information[$primarykey]))
         {
-            return $this->info[$primarykey];
+            return $this->information[$primarykey];
         }
     }
     
     #counts items
-    public function count ($primarykey)
+    public function count ()
     {
         return count($this->information);
     }

@@ -1,4 +1,4 @@
-.buyingFormDesign{
+.AccountFormDesign{
     background-color: whitesmoke;
     width: auto;
     height: auto;
@@ -7,6 +7,7 @@
     text-align: center;
     border-radius: 25px;
     
+    
 }
 
 #headerForm{
@@ -14,7 +15,7 @@
     text-transform: uppercase;
 }
 
-.buyingForms {
+.infoForms {
     display: grid;
     grid-template-columns: 150px auto;
     row-gap: 25px;
@@ -23,13 +24,13 @@
     
 }
 
-.buyingForms input{
+.infoForms input{
     grid-column-start: 2;
     height: auto;
     width: 100%;
 }
 
-.buyingForms label{
+.infoForms label{
     grid-column-start: 1;
     font-weight: bolder;
 }

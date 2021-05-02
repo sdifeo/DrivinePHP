@@ -129,6 +129,7 @@ function destroySession()
             //set it all to session variables
             $_SESSION["firsname"] = $cust->getFirstname();
             $_SESSION["lasname"] = $cust->getLastname();
+            $_SESSION["username"] = $cust->getUsername();
             $_SESSION["customer_uuid"] = $cust->getCustomer_uuid();
             
             header("Location: index.php");
@@ -184,8 +185,6 @@ function createLoginModal()
             <div class="displayName">
                 <br>
                 <?php
-                    global $name;
-                    echo $name;
                     echo "Welcome " . $_SESSION["firsname"] . " " . $_SESSION["lasname"];
                 ?>
                 
