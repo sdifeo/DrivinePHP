@@ -36,3 +36,86 @@ Dates
 Date(Y/y,m,d)
 
 
+
+Final notes:
+- Session_start() – loads “global vars” from the file 
+o Place in centralized location
+o Only place once
+
+
+Encryption and decryption on the internet
+Back and forth
+
+
+
+
+forces user to go into secure connection:
+if (!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
+{
+    header("Location: https://" . $_SERVER["HTTP_POST"] . $_SERVER["REQUEST_URI"]);
+    exit(); 
+}
+
+SQL ROOT PASSWORD (JUST IN CASE): lasalle123
+
+
+
+Database:
+Auto-increment: Don’t have full control (if you delete one in the middle of the list)
+Use Ticks (` `) for table names
+Strings are the slowest for databases, slowest to manage
+CHAR = fixed size
+- Constraints
+- Contacts
+- Known length
+VARCHAR = Variable size
+- Names: VARCHAR
+- INPUT/STRING: VARCHAR
+Index:
+Primary: Primary Key
+Unique: Makes data unique, cannot have same value twice
+- Seen by the users
+Key: Regular index
+- In where/join clauses or if it is a FK
+- Why? – makes you able to find specific data quicker
+- How?
+o PKs are already indexed, FKs are not
+Unique: Makes sure it is unique
+Views:
+- Create views when a table contains sensitive data, don’t want to see all the fields
+o Filtering the fields
+- Joins on tables
+o Showing rendez-vous
+
+
+
+
+Join:
+Inner join: there must be data on each side of the JOIN clause
+Outer join: both tables matter, show all data
+Left: Sets prio the table to the left
+*You can solve most of the problems with left and inner*
+
+
+Adding a user:
+
+
+
+MVC – Model View Controller
+Model: classes/objects, business rules, centralized validation
+View: show the data received from controller or model (not recommended)
+- HTML, CSS, JS
+Controller: user input
+
+Object:
+Variables: properties
+
+
+AJAX:
+Form of Javascript
+XHR = XMLHTTPREQUEST
+
+
+
+ELSE:
+- Handles other browsers (explorer, etc)

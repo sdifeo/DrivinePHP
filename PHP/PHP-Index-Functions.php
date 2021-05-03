@@ -15,6 +15,8 @@ define("FILE_HEADER_INDEX", FOLDER_IMAGES . "CARS/indexHeader.jpg");
 define("FILE_SHOWCASE_SUPERCAR", FOLDER_IMAGES . "CARS/index-showcase-1.jpg");
 define("FILE_SHOWCASE_SUPERCAR2", FOLDER_IMAGES . "CARS/index-showcase-2.jpg");
 define("FILE_SHOWCASE_SUPERCAR3", FOLDER_IMAGES . "CARS/index-showcase-3.png");
+define ("FILE_PHPCHEATSHEET", FOLDER_DATA . "PHP-CheatSheet.docx");
+define ("FILE_PHPCHEATSHEET_ALT", FOLDER_DATA . "PHP-CheatSheet.txt");
 
 define("FILE_AD_1", FOLDER_IMAGES . "CARS/AD-1.jpg");
 define("FILE_AD_2", FOLDER_IMAGES . "CARS/AD-2.jpg");
@@ -41,9 +43,14 @@ function showcaseSelections()
         
     </div>
 </div>
-
 <?php
 }
+
+?>
+
+
+
+<?php
 
 //here is where I display the ad. the ADs have 5 images, one is going to have a red border as asked in the project
 //side note: the old school ads are pretty nice
@@ -72,8 +79,14 @@ function displayAd()
     }   
     
     ?>
-        
+<div class="containerCheatsheet">
+    <a class="cheatSheetButton" href="<?php echo FILE_PHPCHEATSHEET;?>" download> Download cheat sheet (DOCX)</a>
+    <a class="cheatSheetButton" href="<?php echo FILE_PHPCHEATSHEET_ALT;?>" download> Download cheat sheet (TXT)</a>
+</div> 
+    
+
     <?php
+    
 }
 
 ?>

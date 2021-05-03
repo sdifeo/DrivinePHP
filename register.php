@@ -8,7 +8,7 @@
 ?>
 
 <?php
-createPageHeader("Home Page", "register_page.css", "general_style.css", "blackBG", "ModalJS.js");
+createPageHeader("Register", "register_style.css", "general_style.css", "blackBG", "ModalJS.js");
 createNavigationBar();
 ?>
 

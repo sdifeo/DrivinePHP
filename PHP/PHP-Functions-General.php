@@ -26,6 +26,7 @@ header("Pragma: no-cache");
 function createPageHeader($title, $css, $css2, $bgColour, $JS)
 {
     ?>
+<!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8">
@@ -33,7 +34,7 @@ function createPageHeader($title, $css, $css2, $bgColour, $JS)
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="<?php echo FOLDER_CSS . $css; ?>">
             <link rel="stylesheet" href="<?php echo FOLDER_CSS . $css2; ?>">
-            <script src="<?php echo FOLDER_JAVASCRIPT . $JS; ?>"></script>  
+            <script src="<?php echo FOLDER_JAVASCRIPT . $JS; ?>"></script>
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
         </head>
@@ -54,9 +55,9 @@ function createNavigationBar()
             <div class="nav-Buttons">
                 <ol class="navBar-OL">
                     <li id="NB-B1"><a href="index.php"><span>Home</span></a></li>
-                    <li id="NB-B2"><a href="BuyPage.php">Purchase</a></li>
-                    <li id="NB-B3"><a href="OrdersPage.php">Order</a></li>
-                    
+                    <li id="NB-B2"><a href="BuyPage.php">Buy</a></li>
+                    <li id="NB-B3"><a href="purchases.php">Purchases</a></li>
+                   
                     
                 </ol>
                 
@@ -124,7 +125,7 @@ function destroySession()
         if($cust->userLogin($_POST["username"], $_POST["password"]))
         {
             //going to grab the info we need from this username in the DB
-            $cust->grabAllUserInfo($_POST["username"]);
+            $cust->Load($_POST["username"]);
 
             //set it all to session variables
             $_SESSION["firsname"] = $cust->getFirstname();
@@ -138,11 +139,13 @@ function destroySession()
         }
     }
     
+    //check if they press logout button
     if(isset($_POST["logout"]))
     {
         //if already logged in, give the user the option to log out
         if(isset($_POST["logout"]))
         {
+            //send them to this function which handles logging out
             destroySession();
         }
         
@@ -154,6 +157,9 @@ function createLoginModal()
     
     if(!isset($_SESSION["customer_uuid"]))
     {
+        
+        //if theyre not signed in, show them this pretty log in button
+        //with a working modal
       ?>
             
             <button id="test1" class="loginButtonModal" onclick="changeDisplayFunction()">Login</button>
@@ -164,13 +170,13 @@ function createLoginModal()
                          
                         <label id="formLabel"> Username: </label>
                         <input id="formTextbox" type="text" name="username">
-                        </br>
+                        <br>
                         <label id="formLabel"> Password: </label>
                         <input id="formTextbox "type="text" name="password">
                         <br>
 
                         <br>
-                        <input id="formButton" name="login" type="submit" value="Login"> 
+                        <input id="formButtonLogin" name="login" type="submit" value="Login"> 
                         <input id="formButtonClose" type="submit" value="Cancel" onclick="closeLoginForm()">
                         
                         <a id="createAnAccount" href="register.php">Need an account?</a>
@@ -179,19 +185,26 @@ function createLoginModal()
             </div>
     <?php
     }
+    //if they ARE signed in, show them that they can edit their account OR logout
     else
     {
         ?>
             <div class="displayName">
                 <br>
                 <?php
+                //show them their name
                     echo "Welcome " . $_SESSION["firsname"] . " " . $_SESSION["lasname"];
                 ?>
                 
             </div>
-            <form action="index.php" method="POST">
+            <form action="index.php" method="POST" class="logoutAndEdit">
                 <input type="submit" value="Logout" name="logout">
+                <a id="loggedinBtn2" href="account.php" <input type="submit" value="Edit Account" >Edit Account</a>
             </form>
         <?php
     }
 }
+?>
+
+    </body>
+</html>

@@ -16,11 +16,9 @@ class products extends collection{
         $PDOStatement->execute();
         
         while($row = $PDOStatement->fetch())
-        {
-            
+        {            
             $product = new product($row["product_uuid"], $row["product_code"], $row["product_description"], $row["price"]);          
             $this->add($row["product_uuid"], $product);
-            
             
         }
         

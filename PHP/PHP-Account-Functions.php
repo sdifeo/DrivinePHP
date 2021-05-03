@@ -9,15 +9,10 @@ require_once 'PHP-Functions-General.php';
     $cust = new customer;
     if(isset($_POST["update"]))
     {
-        $cust->updateUserInfo();
+        $cust->update();
     
     }
    
-
-function createNotLoggedInSection()
-{
-    
-}
 
 function createUpdateForm()
 {
@@ -26,7 +21,7 @@ function createUpdateForm()
     {
         
         $cust = new customer();
-        $cust->grabAllUserInfo($_SESSION["username"]); 
+        $cust->Load($_SESSION["username"]); 
 ?>    
         <div class="pageContainer">
             <h2 id="headerForm">Edit your account info here!</h2>
@@ -96,7 +91,7 @@ function createUpdateForm()
     }
     else
     {
-        echo "You must be logged into to see this page!";
-        createNotLoggedInSection();
+        echo "<h2 id='notSignedIn'> You can only use this page once you are logged in! </h2>";
+
     }
 }

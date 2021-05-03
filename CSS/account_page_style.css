@@ -54,3 +54,7 @@
     grid-column-start: 3;
     font-weight: bolder;
 }
+
+#notSignedIn{
+    color: white;
+}

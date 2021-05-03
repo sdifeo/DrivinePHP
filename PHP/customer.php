@@ -34,13 +34,14 @@ class customer
     private $address = "";
     private $city = "";
     private $province = "";
-    private $postalCode = "";
+    private $postalcode = "";
     private $password = "";
     private $dateCreated;
     
     #creating constructor - called every time we instantiate an object
-    function __construct($newUsername="", $newFirstname="", $newLastname="", $newAddress="", $newCity="", $newProvince="", $newPostalcode="", $newPassword="") 
+    function __construct($newUsername="", $newFirstname="", $newLastname="", $newAddress="", $newCity="", $newProvince="", $newPostalcode="", $new_Password="") 
     {
+        
         $this->setUsername($newUsername);
         $this->setFirstname($newFirstname);
         $this->setLastname($newLastname);
@@ -48,214 +49,151 @@ class customer
         $this->setCity($newCity);
         $this->setProvince($newProvince);
         $this->setPostalCode($newPostalcode);
-        $this->setPassword($newPassword);
+        $this->setPassword($new_Password);
     }
     
     
     #creating getters and setters
-     
-    public function getCustomer_uuid()
+    public function setusername($newusername)
+    {
+        $this->username = $newusername;
+    }
+    
+    public function setfirstname($newfirstname)
+    {
+        if(mb_strlen($newfirstname) > FIRSTNAME_MAX_LEN)
+        {
+            return "Cannot enter more than " . FIRSTNAME_MAX_LEN;
+        }
+        else
+        {
+            $this->firstname = $newfirstname;
+        }
+        
+    }
+    
+    public function setlastname($newlastname)
+    {
+        if(mb_strlen($newlastname) > LASTNAME_MAX_LEN)
+        {
+            return "Cannot enter more than " . LASTNAME_MAX_LEN;
+        }
+        else
+        {
+            $this->lastname = $newlastname;
+        }
+       
+    }
+    
+    public function setaddress($newaddress)
+    {
+        if(mb_strlen($newaddress) > ADDRESS_MAX_LEN)
+        {
+            return "Cannot enter more than " . ADDRESS_MAX_LEN;
+        }
+        else
+        {
+            $this->address = $newaddress;
+        }
+        
+    }
+    
+    public function setcity($newcity) 
+    {
+        if(mb_strlen($newcity) > CITY_MAX_LEN)
+        {
+            return "Cannot enter more than " . CITY_MAX_LEN;
+        }
+        else
+        {
+            $this->city = $newcity;
+        }
+        
+    }
+    
+    public function setprovince($newprovince)
+    {
+        if(mb_strlen($newprovince) > PROVINCE_MAX_LEN)
+        {
+            return "Cannot enter more than " . PROVINCE_MAX_LEN;
+        }
+        else
+        {
+            $this->province = $newprovince;
+        }
+        
+    }
+    
+    public function setpostalcode($newpostalcode)
+    {
+        if(mb_strlen($newpostalcode) > POSTALCODE_MAX_LEN)
+        {
+            return "Cannot enter more than " . POSTALCODE_MAX_LEN;
+        }
+        else
+        {
+            $this->postalcode = $newpostalcode;
+        }
+       
+    }
+    
+    public function setpassword($newpassword)
+    {
+        if(mb_strlen($newpassword) > PASSWORD_MAX_LEN)
+        {
+            return "Cannot enter more than " . PASSWORD_MAX_LEN;
+        }
+        else
+        {
+            $this->password = $newpassword;
+        }
+    }
+    
+    public function getcustomeruuid()
     {
         return $this->customer_uuid;
     }
-        
-    public function getUsername()
+    
+    public function getusername()
     {
         return $this->username;
     }
     
-    public function setUsername($newUsername)
-    {
-        if (mb_strlen($newUsername) == 0)
-        {
-            return "Username cannot be empty";;
-        }
-        else 
-        {
-            if (mb_strlen($newUsername) > USERNAME_MAX_LEN)
-            {
-                return "Username cannot be more than 12 characters";
-            }
-            else
-            {
-                $this->username = $newUsername;
-            }
-        }
-    }
-    
-    public function getFirstname()
+    public function getfirstname()
     {
         return $this->firstname;
     }
     
-    public function setFirstname($newFirstname)
-    {
-        if (mb_strlen($newFirstname) == 0)
-        {
-            return "Your first name cannot be empty";;
-        }
-        else 
-        {
-            if (mb_strlen($newFirstname) > FIRSTNAME_MAX_LEN)
-            {
-                return "Your first name cannot be more than " . FIRSTNAME_MAX_LEN;
-            }
-            else
-            {
-                $this->firstname = $newFirstname;
-            }
-        }
-    }
-    
-    public function getLastname()
+    public function getlastname()
     {
         return $this->lastname;
     }
-    
-    public function setLastname($newlastname)
-    {
-        if (mb_strlen($newlastname) == 0)
-        {
-            return "Your last name cannot be empty";
-        }
-        else 
-        {
-            if (mb_strlen($newlastname) > LASTNAME_MAX_LEN)
-            {
-                return "Your last name cannot be more than " . LASTNAME_MAX_LEN;
-            }
-            else
-            {
-                $this->lastname = $newlastname;
-            }
-        }
-    }
-    
-    public function getAddress()
+     
+    public function getaddress()
     {
         return $this->address;
     }
     
-    public function setAddress($newAddress)
-    {
-        if (mb_strlen($newAddress) == 0)
-        {
-            return "Your address cannot be empty";
-        }
-        else 
-        {
-            if (mb_strlen($newAddress) > ADDRESS_MAX_LEN)
-            {
-                return "Your address cannot be more than " . ADDRESS_MAX_LEN;
-            }
-            else
-            {
-                $this->address = $newAddress;
-            }
-        }
-    }
-    
-    public function getCity()
+    public function getcity()
     {
         return $this->city;
     }
     
-    public function setCity($newCity)
-    {
-        if (mb_strlen($newCity) == 0)
-        {
-            return "Your city cannot be empty";
-        }
-        else 
-        {
-            if (mb_strlen($newCity) > CITY_MAX_LEN)
-            {
-                return "Your city cannot be more than " . CITY_MAX_LEN;
-            }
-            else
-            {
-                $this->city = $newCity;
-            }
-        }
-    }
-    
-    public function getProvince()
+    public function getprovince()
     {
         return $this->province;
     }
     
-    public function setProvince($newProvince)
+    public function getpostalcode()
     {
-        if (mb_strlen($newProvince) == 0)
-        {
-            return "Your province cannot be empty";
-        }
-        else 
-        {
-            if (mb_strlen($newProvince) > PRODUCTCODE_MAX_LEN)
-            {
-                return "Your province cannot be more than " . PRODUCTCODE_MAX_LEN;
-            }
-            else
-            {
-                $this->province = $newProvince;
-            }
-        }
+        return $this->postalcode;
     }
     
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-    
-    public function setPostalCode($newPostalCode)
-    {
-        if (mb_strlen($newPostalCode) == 0)
-        {
-            return "Your postalcode cannot be empty";
-        }
-        else 
-        {
-            if (mb_strlen($newPostalCode) > POSTALCODE_MAX_LEN)
-            {
-                return "Your postalcode cannot be more than " . POSTALCODE_MAX_LEN;
-            }
-            else
-            {
-                $this->postalcode = $newPostalCode;
-            }
-        }
-    }
-    
-    public function getPassword()
+    public function getpassword()
     {
         return $this->password;
     }
-    
-    public function setPassword($newPassword)
-    {
-        if (mb_strlen($newPassword) == 0)
-        {
-            return "Your password cannot be empty";
-        }
-        else 
-        {
-            if (mb_strlen($newPassword) > PASSWORD_MAX_LEN)
-            {
-                return "Your password cannot be more than " . PASSWORD_MAX_LEN . " characters";
-            }
-            else
-            {
-                $this->password = $newPassword;
-            }
-        }
-    }
-    
-    public function getCreationDate()
-    {
-        return $this->dateCreated;
-    }
-    
+        
     #CREATING METHODS
     #like a load function
     public function userLogin($username, $password)
@@ -287,7 +225,7 @@ class customer
 
     }
     
-    public function grabAllUserInfo($username)
+    public function Load($username)
     {
         global $connection;
         
@@ -314,29 +252,53 @@ class customer
             $PDOStatement = null;
             $connection = null;
     }
+    
             
-    function regsiterNewUser($username, $firstname, $lastname, $address, $city, $province, $postalCode, $password)
+    function regsiterNewUser()
     {
         global $connection;
         
-        $SQLQuery = "CALL customers_insert(:fname, :lname, :address, :city, :postalcode, :province, :uname, :pwd);";
-        $PDOStatement = $connection->prepare($SQLQuery);      
-        $PDOStatement->bindParam(":fname", $_POST[$firstname]);
-        $PDOStatement->bindParam(":lname", $_POST[$lastname]);
-        $PDOStatement->bindParam(":address", $_POST[$address]);
-        $PDOStatement->bindParam(":city", $_POST[$city]);
-        $PDOStatement->bindParam(":postalcode", $_POST[$postalCode]);
-        $PDOStatement->bindParam(":province", $_POST[$province]);
-        $PDOStatement->bindParam(":uname", $_POST[$username]);
-        $PDOStatement->bindParam(":pwd", $_POST[$password]);
-        
-        $PDOStatement->execute();
-        $PDOStatement = null;
-        $connection->close();
-                        
+        if($this->getcustomeruuid() != null)
+        {
+                
+            $SQLQuery = "CALL customers_insert(:fname, :lname, :address, :city, :province, :postal_code, :uname, :u_password)";
+            $PDOStatement = $connection->prepare($SQLQuery);
+            $PDOStatement->bindParam(":uname", $this->username);
+            $PDOStatement->bindParam(":fname", $this->firstname);
+            $PDOStatement->bindParam(":lname", $this->lastname);
+            $PDOStatement->bindParam(":address", $this->address);
+            $PDOStatement->bindParam(":city", $this->city);
+            $PDOStatement->bindParam(":province", $this->province);
+            $PDOStatement->bindParam(":postal_code", $this->postalcode);
+            $PDOStatement->bindParam(":u_password", $this->password);
+
+            $PDOStatement->execute();
+            $PDOStatement = null;
+            $connection = null;
+
+            return true;
+        }
+        else
+        {
+            $SQLQuery = "CALL customers_insert(:uname, :fname, :lname, :address, :city, :province, :postalcode, :u_password :customer_uuid);";
+            $PDOStatement = $connection->prepare($SQLQuery);   
+            $PDOStatement->bindParam(":uname", $this->username);
+            $PDOStatement->bindParam(":fname", $this->firstname);
+            $PDOStatement->bindParam(":lname", $this->lastname);
+            $PDOStatement->bindParam(":address", $this->address);
+            $PDOStatement->bindParam(":city", $this->city);
+            $PDOStatement->bindParam(":province", $this->province);
+            $PDOStatement->bindParam(":postalcode", $this->postalCode);
+            $PDOStatement->bindParam(":u_password", $this->password);
+            $PDOStatement->bindParam(":customer_uuid", $this->customer_uuid);
+            
+            $PDOStatement->execute();
+            $PDOStatement = null;
+            $connection = null;
+        }
     }
     
-    function updateUserInfo()
+    function update()
     {
         global $connection;
         
@@ -356,6 +318,24 @@ class customer
         $PDOStatement->execute();
         $PDOStatement = null;
                 
+    }
+    
+    function delete()
+    {
+        global $connection;
+        
+         $SQLQuery = "CALL customers_delete(:customer_uuid);";
+        $PDOStatement = $connection->prepare($SQLQuery);
+        $PDOStatement->bindParam(":customer_uuid", $_POST[$customeruuid]);
+        
+        $PDOStatement->execute();   
+        $PDOStatement = null;
+    }
+    
+    function getPurchases($searcheddate = "")
+    {
+        $filteredPurchases = new purchases($this->getCustomer_uuid(), $searcheddate);
+        return $filteredPurchases->information;
     }
 }
 

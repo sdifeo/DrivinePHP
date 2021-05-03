@@ -86,22 +86,15 @@ class product {
     {
         $this->price = $newprice;
     }
-    
-   function loadBuyPageDropDown()
-   {
-       global $connection;
        
-       $SQLQuery = "CALL ";
-   }
-   
-   function getInformationOnProduct()
+   function load($productuuid)
    {
         $connection = new PDO("mysql:host=localhost;dbname=database-1934386", "root", "lasalle123");
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
-        
+                
         $SQLQuery = "CALL products_selectOne(:productsSelect);";
         $PDOStatement = $connection->prepare($SQLQuery);
-        $PDOStatement->bindparam(":productsSelect", $_POST["productsSelect"]);
+        $PDOStatement->bindparam(":productsSelect", $productuuid);
         $PDOStatement->execute();
         
         if($row = $PDOStatement->fetch())
@@ -112,7 +105,6 @@ class product {
                 $this->price = $row["price"];
                 #$this->address = $row["address"];
                 
-                
             }
                                     
             $PDOStatement->closeCursor();
@@ -120,7 +112,7 @@ class product {
             $connection = null;
    }
    
-   function saveBuyToDB($customer_uuid, $product_uuid, $price_at_purchase, $subtotal, $taxes_amount, $grand_total)
+   function save($customer_uuid, $product_uuid, $price_at_purchase, $subtotal, $taxes_amount, $grand_total)
    {
         global $connection;
         
@@ -139,5 +131,37 @@ class product {
         $PDOStatement = null;
         $connection = null;
    }
+   
+   function save2()
+   {
+        global $connection;
+        
+        $SQLQuery = "CALL purchases_insert(:customer_uid, :product_uuid, :quantity, :price_at_purchase, :comments, :subtotal, :taxes_amount, :grand_total);";
+        $PDOStatement = $connection->prepare($SQLQuery);      
+        $PDOStatement->bindParam(":customer_uid", $customer_uuid);
+        $PDOStatement->bindParam(":product_uuid", $product_uuid);
+        $PDOStatement->bindParam(":quantity", $_POST["quantity"]);
+        $PDOStatement->bindParam(":price_at_purchase", $price_at_purchase);
+        $PDOStatement->bindParam(":comments", $_POST["comments"]);
+        $PDOStatement->bindParam(":subtotal", $subtotal);
+        $PDOStatement->bindParam(":taxes_amount", $taxes_amount);
+        $PDOStatement->bindParam(":grand_total", $grand_total);
+
+        $PDOStatement->execute();
+        $PDOStatement = null;
+        $connection = null;
+   }
+   
+   function delete()
+    {
+        global $connection;
+        
+        $SQLQuery = "CALL products_delete(:purchases_uuid);";
+        $PDOStatement = $connection->prepare($SQLQuery);
+        $PDOStatement->bindParam(":purchases_uuid", $_POST["purchases_uuid"]);
+        
+        $PDOStatement->execute();   
+        $PDOStatement = null;
+    }
     
 }
