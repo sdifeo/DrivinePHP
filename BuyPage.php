@@ -2,6 +2,7 @@
     require_once "PHP/PHP-Functions-General.php";
     require_once "PHP/PHP-Buypage-Functions.php";
     
+    
 set_error_handler("errorManage");
 set_exception_handler("ExceptionManage"); 
 
