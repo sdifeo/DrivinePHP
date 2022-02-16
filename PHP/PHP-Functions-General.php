@@ -1,5 +1,16 @@
 <?php
 
+//forces user to go into secure connection
+
+//Doesnt work for some reason, kinda freezes the website
+//if (!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
+//{
+//    header("Location: https://" . $_SERVER["HTTP_POST"] . $_SERVER["REQUEST_URI"]);
+//    exit(); 
+//}
+
+
+
 require_once "connection.php";
 include ("customer.php");
 
@@ -75,7 +86,7 @@ function generateFooter()
 {
     ?>
         <div class="footerBar">
-            <p>Copyright Steven Di Feo (1934386) <?php echo date("Y"); ?></p>
+            <p><?php echo date("Y"); ?></p>
         </div>
     <?php
 }

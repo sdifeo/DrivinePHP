@@ -1,4 +1,6 @@
 <?php
+require_once "PHP-Functions-General.php";
+
 
 define("FILE_CSS_REGISTER", FOLDER_CSS . "register_page.css");
 require_once "customer.php";
@@ -42,7 +44,7 @@ if(!isset($_SESSION["customer_uuid"]))
                 <label>First Name: </label>
                 <input type="text" name="firstname"><span id="urgent">*</span>
                 <div class="errorMessage">
-                        <?php echo $cust->setfirstname($newfirstname) ?>
+                        
                 </div>
 
                 <label>Last Name: </label>

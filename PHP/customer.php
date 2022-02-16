@@ -5,7 +5,6 @@
 #CREATED getters and setters....
 #also created methods
 #
-#STEVEN DI FEO 
 ?>
 
 <?php
